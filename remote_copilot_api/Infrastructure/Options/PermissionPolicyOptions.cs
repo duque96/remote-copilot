@@ -4,31 +4,7 @@ public sealed class PermissionPolicyOptions
 {
     public const string SectionName = "PermissionPolicy";
 
-    public List<string> AllowedShellCommands { get; set; } =
-    [
-        "cat",
-        "dart",
-        "dotnet",
-        "fd",
-        "find",
-        "flutter",
-        "git",
-        "go",
-        "grep",
-        "head",
-        "ls",
-        "node",
-        "npm",
-        "pnpm",
-        "pwd",
-        "python",
-        "python3",
-        "rg",
-        "sed",
-        "tail",
-        "wc",
-        "yarn"
-    ];
+    public bool AllowShellByDefault { get; set; } = true;
 
     public List<string> DeniedShellFragments { get; set; } =
     [

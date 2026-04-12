@@ -58,8 +58,7 @@ public sealed class CopilotPermissionService(IOptions<PermissionPolicyOptions> o
                 return Task.FromResult(DenyByRules());
             }
 
-            var executable = command.Split(' ', StringSplitOptions.RemoveEmptyEntries)[0];
-            if (options.Value.AllowedShellCommands.Contains(executable, StringComparer.OrdinalIgnoreCase))
+            if (options.Value.AllowShellByDefault)
             {
                 return Task.FromResult(Approve());
             }
