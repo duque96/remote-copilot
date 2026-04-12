@@ -1,0 +1,72 @@
+{
+  "@@locale": "en",
+  "appTitle": "Remote Copilot",
+  "backendUnavailable": "Unable to reach the backend.",
+  "backendSectionTitle": "Backend",
+  "baseUrlLabel": "Base URL: {baseUrl}",
+  "@baseUrlLabel": {
+    "placeholders": {
+      "baseUrl": {}
+    }
+  },
+  "healthSummary": "API {apiVersion} • {apiStatus} • DB {databaseStatus} • Copilot {copilotStatus}",
+  "@healthSummary": {
+    "placeholders": {
+      "apiVersion": {},
+      "apiStatus": {},
+      "databaseStatus": {},
+      "copilotStatus": {}
+    }
+  },
+  "healthStatusOk": "ok",
+  "healthStatusDown": "down",
+  "generalConversationTitle": "General conversation",
+  "generalConversationDescription": "Start a remote Copilot chat without attaching it to any mounted workspace.",
+  "openGeneralConversationButton": "Open general conversation",
+  "workspaceSectionTitle": "Workspace",
+  "workspaceConversationDescription": "Attach the conversation to a mounted workspace so Copilot can operate inside that repository.",
+  "openWorkspaceConversationButton": "Open workspace conversation",
+  "retryButton": "Retry",
+  "settingsTitle": "Settings",
+  "themeModeLabel": "Theme mode",
+  "themeModeSystem": "System",
+  "themeModeLight": "Light",
+  "themeModeDark": "Dark",
+  "backendUrlLabel": "Backend URL",
+  "saveButton": "Save",
+  "messageInputHint": "Write a message",
+  "attachmentsComingSoon": "Attachments coming soon",
+  "sendTooltip": "Send",
+  "thinkingLabel": "Thinking...",
+  "youLabel": "You",
+  "assistantLabel": "Copilot",
+  "assistantReasoningLabel": "Reasoning",
+  "assistantContextLabel": "Context",
+  "assistantToolsLabel": "Tools",
+  "assistantSkillsLabel": "Skills",
+  "assistantControlsLabel": "Interactions",
+  "assistantFilesCount": "{count} files",
+  "assistantToolsCount": "{count} tools",
+  "@assistantToolsCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "assistantSkillsCount": "{count} skills",
+  "@assistantSkillsCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "assistantInteractionsCount": "{count} interactions",
+  "@assistantInteractionsCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "@assistantFilesCount": {
+    "placeholders": {
+      "count": {}
+    }
+  }
+}

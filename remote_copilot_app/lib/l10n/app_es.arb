@@ -1,0 +1,72 @@
+{
+  "@@locale": "es",
+  "appTitle": "Remote Copilot",
+  "backendUnavailable": "No se puede conectar con el backend.",
+  "backendSectionTitle": "Backend",
+  "baseUrlLabel": "URL base: {baseUrl}",
+  "@baseUrlLabel": {
+    "placeholders": {
+      "baseUrl": {}
+    }
+  },
+  "healthSummary": "API {apiVersion} • {apiStatus} • BD {databaseStatus} • Copilot {copilotStatus}",
+  "@healthSummary": {
+    "placeholders": {
+      "apiVersion": {},
+      "apiStatus": {},
+      "databaseStatus": {},
+      "copilotStatus": {}
+    }
+  },
+  "healthStatusOk": "ok",
+  "healthStatusDown": "caído",
+  "generalConversationTitle": "Conversación general",
+  "generalConversationDescription": "Inicia un chat remoto con Copilot sin vincularlo a ningún workspace montado.",
+  "openGeneralConversationButton": "Abrir conversación general",
+  "workspaceSectionTitle": "Espacio de trabajo",
+  "workspaceConversationDescription": "Vincula la conversación a un workspace montado para que Copilot pueda trabajar dentro de ese repositorio.",
+  "openWorkspaceConversationButton": "Abrir conversación con workspace",
+  "retryButton": "Reintentar",
+  "settingsTitle": "Ajustes",
+  "themeModeLabel": "Modo de tema",
+  "themeModeSystem": "Sistema",
+  "themeModeLight": "Claro",
+  "themeModeDark": "Oscuro",
+  "backendUrlLabel": "URL del backend",
+  "saveButton": "Guardar",
+  "messageInputHint": "Escribe un mensaje",
+  "attachmentsComingSoon": "Adjuntos próximamente",
+  "sendTooltip": "Enviar",
+  "thinkingLabel": "Pensando...",
+  "youLabel": "Tú",
+  "assistantLabel": "Copilot",
+  "assistantReasoningLabel": "Razonando",
+  "assistantContextLabel": "Contexto",
+  "assistantToolsLabel": "Herramientas",
+  "assistantSkillsLabel": "Skills",
+  "assistantControlsLabel": "Interacciones",
+  "assistantFilesCount": "{count} archivos",
+  "assistantToolsCount": "{count} herramientas",
+  "@assistantToolsCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "assistantSkillsCount": "{count} skills",
+  "@assistantSkillsCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "assistantInteractionsCount": "{count} interacciones",
+  "@assistantInteractionsCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "@assistantFilesCount": {
+    "placeholders": {
+      "count": {}
+    }
+  }
+}

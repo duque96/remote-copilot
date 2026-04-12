@@ -1,0 +1,14 @@
+.DS_Store
+.git
+.gitignore
+.vscode
+
+artifacts
+remote_copilot_api/artifacts
+remote_copilot_app/.dart_tool
+remote_copilot_app/.flutter-plugins
+remote_copilot_app/.flutter-plugins-dependencies
+remote_copilot_app/build
+remote_copilot_app/ios/Pods
+remote_copilot_app/macos/Pods
+workspaces

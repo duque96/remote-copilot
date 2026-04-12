@@ -1,0 +1,32 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "RemoteCopilot Backend",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "${workspaceFolder}/remote_copilot_api/remote_copilot_api.csproj",
+      "launchConfigurationId": "TargetFramework=;RemoteCopilotApi"
+    },
+    {
+      "name": "RemoteCopilot Flutter",
+      "type": "dart",
+      "request": "launch",
+      "program": "${workspaceFolder}/remote_copilot_app/lib/main.dart",
+      "cwd": "${workspaceFolder}/remote_copilot_app",
+      "args": [
+        "--dart-define=REMOTE_COPILOT_API_URL=http://localhost:5289"
+      ]
+    }
+  ],
+  "compounds": [
+    {
+      "name": "RemoteCopilot Full Stack",
+      "configurations": [
+        "RemoteCopilot Backend",
+        "RemoteCopilot Flutter"
+      ],
+      "stopAll": true
+    }
+  ]
+}

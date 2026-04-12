@@ -110,6 +110,23 @@ coverage/
 # Symbols
 app.*.symbols
 
+# .NET
+artifacts/
+**/bin/
+**/obj/
+**/appsettings.Development.json
+
+# Workspace/runtime data
+data/
+docker-data/
+
+# VS Code workspace settings
+.vscode/*
+!.vscode/launch.json
+
+# macOS metadata
+.DS_Store
+
 # Exceptions to above rules.
 !**/ios/**/default.mode1v3
 !**/ios/**/default.mode2v3
@@ -117,3 +134,6 @@ app.*.symbols
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 !/dev/ci/**/Gemfile.lock
+
+# Additional ignores for generated files that are not already covered by the above rules.
+workspaces/

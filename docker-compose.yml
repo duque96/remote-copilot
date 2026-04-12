@@ -1,0 +1,22 @@
+services:
+  remote-copilot-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: remote-copilot-api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://0.0.0.0:8080
+      COPILOT_PORT: 3000
+      HOME: /data/copilot-home
+      GH_TOKEN: replace-with-github-copilot-token
+      GITHUB_TOKEN: replace-with-github-copilot-token
+    ports:
+      - "8080:8080"
+    volumes:
+      - remote-copilot-data:/data
+      - ./workspaces:/workspaces
+    restart: unless-stopped
+
+volumes:
+  remote-copilot-data:
