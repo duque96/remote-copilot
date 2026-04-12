@@ -7,6 +7,7 @@ WORKDIR /src/remote_copilot_app
 
 ## Copy the minimum dependency manifests first to maximize Docker layer reuse.
 COPY remote_copilot_app/pubspec.yaml remote_copilot_app/analysis_options.yaml remote_copilot_app/l10n.yaml ./
+COPY remote_copilot_app/lib/l10n ./lib/l10n
 
 ## Enable web support and restore Dart/Flutter packages.
 RUN flutter config --enable-web \
