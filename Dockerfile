@@ -25,7 +25,7 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build-api
 WORKDIR /src
 
 ## Copy the solution-level build metadata and the API project file for restore.
-COPY Directory.Build.props Directory.Packages.props RemoteCopilot.sln ./
+COPY remote_copilot_api/Directory.Build.props remote_copilot_api/Directory.Packages.props RemoteCopilot.sln ./
 COPY remote_copilot_api/remote_copilot_api.csproj remote_copilot_api/
 
 RUN dotnet restore RemoteCopilot.sln
