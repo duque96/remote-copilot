@@ -136,4 +136,4 @@ docker-data/
 !/dev/ci/**/Gemfile.lock
 
 # Additional ignores for generated files that are not already covered by the above rules.
-workspaces/
+/workspaces/
