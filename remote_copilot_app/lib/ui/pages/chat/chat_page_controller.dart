@@ -12,22 +12,22 @@ class ChatPageController extends ChangeNotifier {
   static const _defaultModelOption = CopilotModelOption(id: _defaultModel, name: _defaultModel);
   static const _maxTimelineEvents = 250;
 
-  ChatPageController({required RemoteCopilotRepository repository, required RemoteSessionBundle sessionBundle, WorkspaceDefinition? workspace})
+  ChatPageController({required RemoteCopilotRepository repository, RemoteSessionBundle? sessionBundle, WorkspaceDefinition? workspace})
     : _repository = repository,
-      _streamConversationId = sessionBundle.conversation.id,
+      _streamConversationId = sessionBundle?.conversation.id,
       _state = ChatPageState(
         workspace: workspace,
-        session: sessionBundle.session,
-        conversation: sessionBundle.conversation,
-        messages: sessionBundle.conversation.messages,
+        session: sessionBundle?.session,
+        conversation: sessionBundle?.conversation,
+        messages: sessionBundle?.conversation.messages ?? const [],
         timelineEvents: const [],
-        connectionStatus: ChatConnectionStatus.connecting,
+        connectionStatus: sessionBundle == null ? ChatConnectionStatus.disconnected : ChatConnectionStatus.connecting,
         availableModels: const [_defaultModelOption],
         selectedModel: _defaultModel,
       );
 
   final RemoteCopilotRepository _repository;
-  final String _streamConversationId;
+  String? _streamConversationId;
 
   StreamSubscription<ConversationStreamEvent>? _subscription;
   ChatPageState _state;
@@ -36,7 +36,6 @@ class ChatPageController extends ChangeNotifier {
 
   Future<void> initialize() async {
     try {
-      final conversation = await _repository.getConversation(_streamConversationId);
       final availableModels = await _repository.getAvailableModels();
       final selectedModel = availableModels.any((item) => item.id == _state.selectedModel)
           ? _state.selectedModel
@@ -44,25 +43,25 @@ class ChatPageController extends ChangeNotifier {
                 ? _defaultModel
                 : availableModels.firstWhere((item) => item.id == _defaultModel, orElse: () => availableModels.first).id);
 
-      _state = _state.copyWith(conversation: conversation, messages: conversation.messages, isLoading: false, errorMessage: null);
       _state = _state.copyWith(
         availableModels: availableModels.isEmpty ? const [_defaultModelOption] : availableModels,
         selectedModel: selectedModel,
+        errorMessage: null,
       );
+
+      if (_streamConversationId == null) {
+        _state = _state.copyWith(isLoading: false, connectionStatus: ChatConnectionStatus.disconnected);
+        notifyListeners();
+        return;
+      }
+
+      final conversation = await _repository.getConversation(_streamConversationId!);
+
+      _state = _state.copyWith(conversation: conversation, messages: conversation.messages, isLoading: false, errorMessage: null);
+      _state = _state.copyWith(session: _state.session);
       notifyListeners();
 
-      _subscription = _repository
-          .streamConversation(_streamConversationId)
-          .listen(
-            _handleStreamEvent,
-            onError: (Object error) {
-              _state = _state.copyWith(connectionStatus: ChatConnectionStatus.disconnected, isSending: false, errorMessage: error.toString());
-              notifyListeners();
-            },
-          );
-
-      _state = _state.copyWith(connectionStatus: ChatConnectionStatus.live);
-      notifyListeners();
+      await _subscribeToConversation(_streamConversationId!);
     } catch (error) {
       _state = _state.copyWith(isLoading: false, connectionStatus: ChatConnectionStatus.disconnected, errorMessage: error.toString());
       notifyListeners();
@@ -79,13 +78,20 @@ class ChatPageController extends ChangeNotifier {
     notifyListeners();
 
     try {
-      final response = await _repository.sendMessage(conversationId: _streamConversationId, content: content, model: _state.selectedModel);
+      final conversationId = await _ensureConversation();
+      if (conversationId == null) {
+        _state = _state.copyWith(isSending: false, errorMessage: 'Unable to create a conversation.');
+        notifyListeners();
+        return;
+      }
+
+      final response = await _repository.sendMessage(conversationId: conversationId, content: content, model: _state.selectedModel);
 
       final updatedMessages = [..._state.messages];
       _upsertMessage(updatedMessages, response.userMessage);
       _upsertMessage(updatedMessages, response.assistantMessage);
 
-      _state = _state.copyWith(messages: updatedMessages);
+      _state = _state.copyWith(session: response.session, conversation: response.conversation, messages: updatedMessages, isSending: false);
       notifyListeners();
     } catch (error) {
       _state = _state.copyWith(isSending: false, errorMessage: error.toString());
@@ -100,6 +106,42 @@ class ChatPageController extends ChangeNotifier {
     }
 
     _state = _state.copyWith(selectedModel: trimmed);
+    notifyListeners();
+  }
+
+  Future<String?> _ensureConversation() async {
+    if (_streamConversationId != null) {
+      return _streamConversationId;
+    }
+
+    final bundle = await _repository.createSession(workspaceId: _state.workspace?.id);
+    _streamConversationId = bundle.conversation.id;
+    _state = _state.copyWith(
+      session: bundle.session,
+      conversation: bundle.conversation,
+      messages: bundle.conversation.messages,
+      connectionStatus: ChatConnectionStatus.connecting,
+      errorMessage: null,
+    );
+    notifyListeners();
+
+    await _subscribeToConversation(_streamConversationId!);
+    return _streamConversationId;
+  }
+
+  Future<void> _subscribeToConversation(String conversationId) async {
+    await _subscription?.cancel();
+    _subscription = _repository
+        .streamConversation(conversationId)
+        .listen(
+          _handleStreamEvent,
+          onError: (Object error) {
+            _state = _state.copyWith(connectionStatus: ChatConnectionStatus.disconnected, isSending: false, errorMessage: error.toString());
+            notifyListeners();
+          },
+        );
+
+    _state = _state.copyWith(connectionStatus: ChatConnectionStatus.live);
     notifyListeners();
   }
 

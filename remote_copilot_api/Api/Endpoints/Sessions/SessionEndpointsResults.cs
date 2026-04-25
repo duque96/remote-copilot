@@ -25,20 +25,48 @@ public static class SessionEndpointsResults
                 session.UpdatedAt);
     }
 
+    public sealed record ConversationMessageApiResult(
+        string Id,
+        string ConversationId,
+        string Role,
+        string Content,
+        string Status,
+        int Sequence,
+        DateTimeOffset CreatedAt,
+        DateTimeOffset UpdatedAt,
+        string? Error)
+    {
+        public static ConversationMessageApiResult FromDomain(ConversationMessage message) =>
+            new(
+                message.Id,
+                message.ConversationId,
+                message.Role,
+                message.Content,
+                message.Status,
+                message.Sequence,
+                message.CreatedAt,
+                message.UpdatedAt,
+                message.Error);
+    }
+
     public sealed record ConversationThreadApiResult(
         string Id,
         string SessionId,
         string Title,
         DateTimeOffset CreatedAt,
-        DateTimeOffset UpdatedAt)
+        DateTimeOffset UpdatedAt,
+        IReadOnlyList<ConversationMessageApiResult> Messages)
     {
-        public static ConversationThreadApiResult FromDomain(ConversationThread conversation) =>
+        public static ConversationThreadApiResult FromDomain(
+            ConversationThread conversation,
+            IReadOnlyList<ConversationMessage> messages) =>
             new(
                 conversation.Id,
                 conversation.SessionId,
                 conversation.Title,
                 conversation.CreatedAt,
-                conversation.UpdatedAt);
+                conversation.UpdatedAt,
+                messages.Select(ConversationMessageApiResult.FromDomain).ToList());
     }
 
     public sealed record CreateRemoteSessionApiResult(
@@ -46,6 +74,21 @@ public static class SessionEndpointsResults
         ConversationThreadApiResult Conversation)
     {
         public static CreateRemoteSessionApiResult FromDomain(CreateRemoteSessionCommandResult result) =>
-            new(RemoteSessionApiResult.FromDomain(result.Session), ConversationThreadApiResult.FromDomain(result.Conversation));
+            new(
+                RemoteSessionApiResult.FromDomain(result.Session),
+                ConversationThreadApiResult.FromDomain(result.Conversation, []));
+    }
+
+    public sealed record SessionDetailsApiResult(
+        RemoteSessionApiResult Session,
+        ConversationThreadApiResult Conversation)
+    {
+        public static SessionDetailsApiResult FromDomain(
+            RemoteSession session,
+            ConversationThread conversation,
+            IReadOnlyList<ConversationMessage> messages) =>
+            new(
+                RemoteSessionApiResult.FromDomain(session),
+                ConversationThreadApiResult.FromDomain(conversation, messages));
     }
 }

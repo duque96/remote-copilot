@@ -16,16 +16,17 @@ public static class InfrastructureServiceCollectionExtensions
     {
         services.Configure<PersistenceOptions>(configuration.GetSection(PersistenceOptions.SectionName));
         services.Configure<CopilotOptions>(configuration.GetSection(CopilotOptions.SectionName));
-        services.Configure<WorkspaceCatalogOptions>(configuration.GetSection(WorkspaceCatalogOptions.SectionName));
+        services.Configure<WorkspaceRootOptions>(configuration.GetSection(WorkspaceRootOptions.SectionName));
         services.Configure<PermissionPolicyOptions>(configuration.GetSection(PermissionPolicyOptions.SectionName));
 
         services.AddSingleton<SqliteConnectionFactory>();
         services.AddSingleton<SqliteDatabaseInitializer>();
         services.AddSingleton<CopilotClientAccessor>();
         services.AddSingleton<CopilotPermissionService>();
+        services.AddSingleton<WorkspaceCatalogManager>();
         services.AddSingleton<IConversationStreamPublisher, ConversationStreamPublisher>();
 
-        services.AddScoped<IWorkspaceRepository, SqliteWorkspaceRepository>();
+        services.AddSingleton<IWorkspaceRepository, SqliteWorkspaceRepository>();
         services.AddScoped<IRemoteSessionRepository, SqliteRemoteSessionRepository>();
         services.AddScoped<IConversationRepository, SqliteConversationRepository>();
         services.AddScoped<ICopilotConversationOrchestrator, CopilotConversationOrchestrator>();

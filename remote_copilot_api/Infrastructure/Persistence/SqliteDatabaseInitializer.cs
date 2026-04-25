@@ -1,12 +1,11 @@
 using Microsoft.Data.Sqlite;
-using Microsoft.Extensions.Options;
-using RemoteCopilot.Api.Infrastructure.Options;
+using RemoteCopilot.Api.Infrastructure.Managers;
 
 namespace RemoteCopilot.Api.Infrastructure.Persistence;
 
 public sealed class SqliteDatabaseInitializer(
     SqliteConnectionFactory connectionFactory,
-    IOptions<WorkspaceCatalogOptions> workspaceOptions)
+    WorkspaceCatalogManager workspaceCatalogManager)
 {
     public async Task InitializeAsync()
     {
@@ -69,25 +68,6 @@ public sealed class SqliteDatabaseInitializer(
 
         await command.ExecuteNonQueryAsync();
 
-        foreach (var workspace in workspaceOptions.Value.Items)
-        {
-            await using var upsert = connection.CreateCommand();
-            upsert.CommandText =
-                """
-                INSERT INTO workspaces (id, name, mounted_path, source_kind, created_at, last_used_at)
-                VALUES ($id, $name, $mountedPath, $sourceKind, $createdAt, NULL)
-                ON CONFLICT(id) DO UPDATE SET
-                    name = excluded.name,
-                    mounted_path = excluded.mounted_path,
-                    source_kind = excluded.source_kind;
-                """;
-            upsert.Parameters.AddWithValue("$id", workspace.Id);
-            upsert.Parameters.AddWithValue("$name", workspace.Name);
-            upsert.Parameters.AddWithValue("$mountedPath", workspace.MountedPath);
-            upsert.Parameters.AddWithValue("$sourceKind", workspace.SourceKind);
-            upsert.Parameters.AddWithValue("$createdAt", DateTimeOffset.UtcNow.ToString("O"));
-
-            await upsert.ExecuteNonQueryAsync();
-        }
+        await workspaceCatalogManager.SyncAsync(CancellationToken.None);
     }
 }

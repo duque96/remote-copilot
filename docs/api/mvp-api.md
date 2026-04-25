@@ -16,7 +16,35 @@ Returns runtime metadata such as Copilot server URL, connection status, and conf
 
 ### `GET /api/workspaces`
 
-Returns the list of configured workspaces exposed by the container.
+Returns the current list of discovered projects exposed from the mounted root directory.
+
+### `POST /api/workspaces`
+
+Creates a new project by creating a child directory under the configured workspace root.
+
+```json
+{
+  "name": "sample-repo"
+}
+```
+
+### `PUT /api/workspaces/{workspaceId}`
+
+Renames an existing project. The backing directory is renamed as part of the operation.
+
+```json
+{
+  "name": "sample-repo-renamed"
+}
+```
+
+### `DELETE /api/workspaces/{workspaceId}`
+
+Deletes a project and removes its backing directory from the mounted root.
+
+### `POST /api/workspaces/sync`
+
+Rescans the mounted root directory and synchronizes the persisted catalog with the current child directories.
 
 ## Sessions
 
@@ -102,3 +130,17 @@ Notes:
 - `data` is the raw event payload exposed by `GitHub.Copilot.SDK` for that event type.
 - `messageId` is the persisted conversation message ID when the backend can correlate the SDK event with a local message.
 - The stream is no longer limited to assistant text deltas; it includes reasoning, tools, skills, permissions, subagents, MCP, and session lifecycle events.
+
+## Runtime configuration
+
+The backend only needs the root path that contains all projects:
+
+```json
+{
+  "WorkspaceRoot": {
+    "Path": "/workspaces"
+  }
+}
+```
+
+Each child directory under that root is treated as an independent project. Copilot sessions remain linked to the selected project through `workspaceId`, while general chat continues to use `workspaceId = null`.

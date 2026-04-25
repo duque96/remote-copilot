@@ -23,4 +23,16 @@ public static class WorkspaceEndpointsResults
                 workspace.LastUsedAt);
         }
     }
+
+    public sealed record SyncWorkspacesApiResult(
+        int TotalProjects,
+        IReadOnlyList<WorkspaceSummaryApiResult> Projects)
+    {
+        public static SyncWorkspacesApiResult FromDomain(IReadOnlyList<WorkspaceDefinition> workspaces)
+        {
+            return new SyncWorkspacesApiResult(
+                workspaces.Count,
+                workspaces.Select(WorkspaceSummaryApiResult.FromDomain).ToList());
+        }
+    }
 }

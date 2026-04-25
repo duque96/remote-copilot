@@ -61,7 +61,7 @@ public static class ConversationEndpointsResults
         public static SendConversationMessageApiResult FromDomain(SendConversationMessageCommandResult result) =>
             new(
                 SessionEndpointsResults.RemoteSessionApiResult.FromDomain(result.Session),
-                SessionEndpointsResults.ConversationThreadApiResult.FromDomain(result.Conversation),
+                SessionEndpointsResults.ConversationThreadApiResult.FromDomain(result.Conversation, []),
                 ConversationMessageApiResult.FromDomain(result.UserMessage),
                 ConversationMessageApiResult.FromDomain(result.AssistantMessage));
     }

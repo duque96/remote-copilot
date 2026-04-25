@@ -14,7 +14,21 @@ abstract class RemoteCopilotRepository {
 
   Future<List<WorkspaceDefinition>> getWorkspaces();
 
+  Future<List<WorkspaceDefinition>> syncWorkspaces();
+
+  Future<WorkspaceDefinition> createWorkspace({required String name});
+
+  Future<WorkspaceDefinition> updateWorkspace({required String workspaceId, required String name});
+
+  Future<WorkspaceDefinition> deleteWorkspace({required String workspaceId});
+
   Future<RemoteSessionBundle> createSession({String? workspaceId, String? title});
+
+  Future<List<RemoteSession>> listSessions({String? workspaceId});
+
+  Future<RemoteSessionBundle> getSession(String sessionId);
+
+  Future<void> deleteSession(String sessionId);
 
   Future<ConversationThread> getConversation(String conversationId);
 

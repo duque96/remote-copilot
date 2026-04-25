@@ -8,14 +8,15 @@
 - Copilot CLI server mode via `--headless`;
 - general remote conversation mode without a workspace;
 - durable persistence of sessions and messages;
-- optional workspace selection from mounted repositories;
+- project discovery from a mounted root directory;
+- project creation, rename, deletion, and manual sync from the app;
 - workspace-linked conversation mode for repository-aware work;
 - real-time assistant streaming.
 
 ## Out of scope for the first cut
 
 - multi-user tenancy;
-- direct repository cloning/management from the app;
+- direct repository cloning from the app;
 - MCP installation UI;
 - skills management UI;
 - advanced permission approval UX;

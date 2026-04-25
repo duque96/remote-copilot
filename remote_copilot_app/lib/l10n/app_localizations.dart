@@ -145,6 +145,246 @@ abstract class AppLocalizations {
   /// **'down'**
   String get healthStatusDown;
 
+  /// No description provided for @projectsHeroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Work across your projects'**
+  String get projectsHeroTitle;
+
+  /// No description provided for @projectsHeroDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage project folders, sync the catalog, and open remote Copilot sessions on any mounted repository.'**
+  String get projectsHeroDescription;
+
+  /// No description provided for @projectsCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} active projects'**
+  String projectsCountLabel(Object count);
+
+  /// No description provided for @selectedProjectLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Active project: {projectName}'**
+  String selectedProjectLabel(Object projectName);
+
+  /// No description provided for @selectedProjectFallbackLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a project to focus the work'**
+  String get selectedProjectFallbackLabel;
+
+  /// No description provided for @generalModeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Or stay in general mode for quick ideation'**
+  String get generalModeLabel;
+
+  /// No description provided for @projectCatalogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Project catalog'**
+  String get projectCatalogTitle;
+
+  /// No description provided for @projectCatalogDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Each child folder under the mounted root lives here as an independent project with its own Copilot session.'**
+  String get projectCatalogDescription;
+
+  /// No description provided for @projectCatalogVisualDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Managing persistent remote environments'**
+  String get projectCatalogVisualDescription;
+
+  /// No description provided for @commandProjectsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Projects'**
+  String get commandProjectsLabel;
+
+  /// No description provided for @commandDeployLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Deploy'**
+  String get commandDeployLabel;
+
+  /// No description provided for @cpuLoadLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'CPU Load'**
+  String get cpuLoadLabel;
+
+  /// No description provided for @ramUsageLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'RAM Usage'**
+  String get ramUsageLabel;
+
+  /// No description provided for @activeNodesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Nodes'**
+  String get activeNodesLabel;
+
+  /// No description provided for @latencyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Latency'**
+  String get latencyLabel;
+
+  /// No description provided for @createProjectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create project'**
+  String get createProjectTitle;
+
+  /// No description provided for @createProjectAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Create project'**
+  String get createProjectAction;
+
+  /// No description provided for @renameProjectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit project'**
+  String get renameProjectTitle;
+
+  /// No description provided for @renameProjectAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Save changes'**
+  String get renameProjectAction;
+
+  /// No description provided for @deleteProjectAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete project'**
+  String get deleteProjectAction;
+
+  /// No description provided for @syncProjectsAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync projects'**
+  String get syncProjectsAction;
+
+  /// No description provided for @projectNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Project name'**
+  String get projectNameLabel;
+
+  /// No description provided for @projectNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'my-project'**
+  String get projectNameHint;
+
+  /// No description provided for @projectPathLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Mounted folder'**
+  String get projectPathLabel;
+
+  /// No description provided for @emptyProjectsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No projects yet'**
+  String get emptyProjectsTitle;
+
+  /// No description provided for @emptyProjectsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a new folder inside the mounted root or sync to load the ones that already exist.'**
+  String get emptyProjectsDescription;
+
+  /// No description provided for @noFilteredProjectsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No matching projects'**
+  String get noFilteredProjectsTitle;
+
+  /// No description provided for @noFilteredProjectsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Adjust the search or change the filter to show projects again.'**
+  String get noFilteredProjectsDescription;
+
+  /// No description provided for @searchProjectsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search by name or path'**
+  String get searchProjectsHint;
+
+  /// No description provided for @filterAllProjectsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get filterAllProjectsLabel;
+
+  /// No description provided for @filterActiveProjectsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get filterActiveProjectsLabel;
+
+  /// No description provided for @filterAttentionProjectsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs review'**
+  String get filterAttentionProjectsLabel;
+
+  /// No description provided for @projectLastUsedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Last used: {date}'**
+  String projectLastUsedLabel(Object date);
+
+  /// No description provided for @projectNeverUsedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Created: {date}'**
+  String projectNeverUsedLabel(Object date);
+
+  /// No description provided for @projectStatusActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get projectStatusActive;
+
+  /// No description provided for @projectStatusIdle.
+  ///
+  /// In en, this message translates to:
+  /// **'Idle'**
+  String get projectStatusIdle;
+
+  /// No description provided for @projectStatusAttention.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs review'**
+  String get projectStatusAttention;
+
+  /// No description provided for @deleteProjectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete {projectName}'**
+  String deleteProjectTitle(Object projectName);
+
+  /// No description provided for @deleteProjectMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'The project folder at {projectPath} will be removed and it will disappear from the app.'**
+  String deleteProjectMessage(Object projectPath);
+
+  /// No description provided for @cancelButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancelButton;
+
   /// No description provided for @generalConversationTitle.
   ///
   /// In en, this message translates to:
@@ -154,8 +394,20 @@ abstract class AppLocalizations {
   /// No description provided for @generalConversationDescription.
   ///
   /// In en, this message translates to:
-  /// **'Start a remote Copilot chat without attaching it to any mounted workspace.'**
+  /// **'Start a remote Copilot chat without attaching it to any project. This is useful for exploring ideas before jumping into a repository.'**
   String get generalConversationDescription;
+
+  /// No description provided for @generalConversationFeatureTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for shaping ideas'**
+  String get generalConversationFeatureTitle;
+
+  /// No description provided for @generalConversationFeatureDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Use it to discuss strategy, design changes, or prepare prompts before entering a specific project.'**
+  String get generalConversationFeatureDescription;
 
   /// No description provided for @openGeneralConversationButton.
   ///
@@ -166,20 +418,92 @@ abstract class AppLocalizations {
   /// No description provided for @workspaceSectionTitle.
   ///
   /// In en, this message translates to:
-  /// **'Workspace'**
+  /// **'Project'**
   String get workspaceSectionTitle;
 
   /// No description provided for @workspaceConversationDescription.
   ///
   /// In en, this message translates to:
-  /// **'Attach the conversation to a mounted workspace so Copilot can operate inside that repository.'**
+  /// **'Attach the conversation to a mounted project so Copilot can operate inside that repository.'**
   String get workspaceConversationDescription;
 
   /// No description provided for @openWorkspaceConversationButton.
   ///
   /// In en, this message translates to:
-  /// **'Open workspace conversation'**
+  /// **'Open project conversation'**
   String get openWorkspaceConversationButton;
+
+  /// No description provided for @openProjectConversationButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Open project chat'**
+  String get openProjectConversationButton;
+
+  /// No description provided for @newConversationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'New conversation'**
+  String get newConversationLabel;
+
+  /// No description provided for @chatsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Chats'**
+  String get chatsLabel;
+
+  /// No description provided for @chatsPageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Chats'**
+  String get chatsPageTitle;
+
+  /// No description provided for @chatsSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search chats'**
+  String get chatsSearchHint;
+
+  /// No description provided for @chatsEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No chat history yet'**
+  String get chatsEmptyTitle;
+
+  /// No description provided for @chatsEmptyDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Your past conversations will appear here when the backend exposes chat history.'**
+  String get chatsEmptyDescription;
+
+  /// No description provided for @deleteChatHistoryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete chat'**
+  String get deleteChatHistoryAction;
+
+  /// No description provided for @deleteChatHistoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete {chatTitle}'**
+  String deleteChatHistoryTitle(Object chatTitle);
+
+  /// No description provided for @deleteChatHistoryMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This chat will disappear from the history and its persisted messages will be removed.'**
+  String get deleteChatHistoryMessage;
+
+  /// No description provided for @streamingTelemetryLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Streaming telemetry'**
+  String get streamingTelemetryLabel;
+
+  /// No description provided for @projectsRootHint.
+  ///
+  /// In en, this message translates to:
+  /// **'The app manages projects as child folders inside the backend mounted root.'**
+  String get projectsRootHint;
 
   /// No description provided for @retryButton.
   ///
@@ -228,6 +552,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Save'**
   String get saveButton;
+
+  /// No description provided for @emptyConversationPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'How can I help you?'**
+  String get emptyConversationPrompt;
 
   /// No description provided for @messageInputHint.
   ///

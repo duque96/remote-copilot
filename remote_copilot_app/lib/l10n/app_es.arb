@@ -20,12 +20,101 @@
   },
   "healthStatusOk": "ok",
   "healthStatusDown": "caído",
+  "projectsHeroTitle": "Trabaja sobre tus proyectos",
+  "projectsHeroDescription": "Gestiona carpetas de proyecto, sincroniza el catálogo y abre sesiones remotas de Copilot sobre cualquier repositorio montado.",
+  "projectsCountLabel": "{count} proyectos activos",
+  "@projectsCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "selectedProjectLabel": "Proyecto activo: {projectName}",
+  "@selectedProjectLabel": {
+    "placeholders": {
+      "projectName": {}
+    }
+  },
+  "selectedProjectFallbackLabel": "Selecciona un proyecto para centrar el trabajo",
+  "generalModeLabel": "O usa el modo general para ideación rápida",
+  "projectCatalogTitle": "Catálogo de proyectos",
+  "projectCatalogDescription": "Cada carpeta hija de la raíz montada vive aquí como un proyecto independiente con su propia sesión de Copilot.",
+  "projectCatalogVisualDescription": "Gestionando entornos remotos persistentes",
+  "commandProjectsLabel": "Proyectos",
+  "commandDeployLabel": "Despliegue",
+  "cpuLoadLabel": "Carga CPU",
+  "ramUsageLabel": "Uso RAM",
+  "activeNodesLabel": "Nodos activos",
+  "latencyLabel": "Latencia",
+  "createProjectTitle": "Crear proyecto",
+  "createProjectAction": "Crear proyecto",
+  "renameProjectTitle": "Editar proyecto",
+  "renameProjectAction": "Guardar cambios",
+  "deleteProjectAction": "Borrar proyecto",
+  "syncProjectsAction": "Sincronizar proyectos",
+  "projectNameLabel": "Nombre del proyecto",
+  "projectNameHint": "mi-proyecto",
+  "projectPathLabel": "Carpeta montada",
+  "emptyProjectsTitle": "Todavía no hay proyectos",
+  "emptyProjectsDescription": "Crea una carpeta nueva dentro de la raíz montada o sincroniza para cargar las que ya existan.",
+  "noFilteredProjectsTitle": "No hay coincidencias",
+  "noFilteredProjectsDescription": "Ajusta la búsqueda o cambia el filtro para volver a mostrar proyectos.",
+  "searchProjectsHint": "Buscar por nombre o ruta",
+  "filterAllProjectsLabel": "Todos",
+  "filterActiveProjectsLabel": "Activos",
+  "filterAttentionProjectsLabel": "Revisar",
+  "projectLastUsedLabel": "Último uso: {date}",
+  "@projectLastUsedLabel": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "projectNeverUsedLabel": "Creado: {date}",
+  "@projectNeverUsedLabel": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "projectStatusActive": "Activo",
+  "projectStatusIdle": "En espera",
+  "projectStatusAttention": "Requiere revisión",
+  "deleteProjectTitle": "Borrar {projectName}",
+  "@deleteProjectTitle": {
+    "placeholders": {
+      "projectName": {}
+    }
+  },
+  "deleteProjectMessage": "Se eliminará la carpeta del proyecto en {projectPath} y dejará de aparecer en la app.",
+  "@deleteProjectMessage": {
+    "placeholders": {
+      "projectPath": {}
+    }
+  },
+  "cancelButton": "Cancelar",
   "generalConversationTitle": "Conversación general",
-  "generalConversationDescription": "Inicia un chat remoto con Copilot sin vincularlo a ningún workspace montado.",
+  "generalConversationDescription": "Inicia un chat remoto con Copilot sin vincularlo a ningún proyecto. Es útil para explorar ideas o preparar trabajo antes de entrar en un repositorio.",
+  "generalConversationFeatureTitle": "Ideal para aterrizar ideas",
+  "generalConversationFeatureDescription": "Úsalo para pedir estrategia, diseñar cambios o preparar prompts antes de entrar en un proyecto concreto.",
   "openGeneralConversationButton": "Abrir conversación general",
-  "workspaceSectionTitle": "Espacio de trabajo",
-  "workspaceConversationDescription": "Vincula la conversación a un workspace montado para que Copilot pueda trabajar dentro de ese repositorio.",
-  "openWorkspaceConversationButton": "Abrir conversación con workspace",
+  "workspaceSectionTitle": "Proyecto",
+  "workspaceConversationDescription": "Vincula la conversación a un proyecto montado para que Copilot pueda trabajar dentro de ese repositorio.",
+  "openWorkspaceConversationButton": "Abrir conversación con proyecto",
+  "openProjectConversationButton": "Abrir chat del proyecto",
+  "newConversationLabel": "Nueva conversación",
+  "chatsLabel": "Chats",
+  "chatsPageTitle": "Chats",
+  "chatsSearchHint": "Buscar chats",
+  "chatsEmptyTitle": "Todavía no hay historial de chats",
+  "chatsEmptyDescription": "Tus conversaciones anteriores aparecerán aquí cuando el backend exponga el historial de chats.",
+  "deleteChatHistoryAction": "Borrar chat",
+  "deleteChatHistoryTitle": "Borrar {chatTitle}",
+  "@deleteChatHistoryTitle": {
+    "placeholders": {
+      "chatTitle": {}
+    }
+  },
+  "deleteChatHistoryMessage": "Este chat desaparecerá del histórico y se eliminarán sus mensajes persistidos.",
+  "streamingTelemetryLabel": "Telemetría en streaming",
+  "projectsRootHint": "La app gestiona proyectos como carpetas hijas dentro de la raíz montada del backend.",
   "retryButton": "Reintentar",
   "settingsTitle": "Ajustes",
   "themeModeLabel": "Modo de tema",
@@ -34,6 +123,7 @@
   "themeModeDark": "Oscuro",
   "backendUrlLabel": "URL del backend",
   "saveButton": "Guardar",
+  "emptyConversationPrompt": "¿En qué puedo ayudarte?",
   "messageInputHint": "Escribe un mensaje",
   "attachmentsComingSoon": "Adjuntos próximamente",
   "sendTooltip": "Enviar",

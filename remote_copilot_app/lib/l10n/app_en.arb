@@ -20,12 +20,101 @@
   },
   "healthStatusOk": "ok",
   "healthStatusDown": "down",
+  "projectsHeroTitle": "Work across your projects",
+  "projectsHeroDescription": "Manage project folders, sync the catalog, and open remote Copilot sessions on any mounted repository.",
+  "projectsCountLabel": "{count} active projects",
+  "@projectsCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "selectedProjectLabel": "Active project: {projectName}",
+  "@selectedProjectLabel": {
+    "placeholders": {
+      "projectName": {}
+    }
+  },
+  "selectedProjectFallbackLabel": "Pick a project to focus the work",
+  "generalModeLabel": "Or stay in general mode for quick ideation",
+  "projectCatalogTitle": "Project catalog",
+  "projectCatalogDescription": "Each child folder under the mounted root lives here as an independent project with its own Copilot session.",
+  "projectCatalogVisualDescription": "Managing persistent remote environments",
+  "commandProjectsLabel": "Projects",
+  "commandDeployLabel": "Deploy",
+  "cpuLoadLabel": "CPU Load",
+  "ramUsageLabel": "RAM Usage",
+  "activeNodesLabel": "Active Nodes",
+  "latencyLabel": "Latency",
+  "createProjectTitle": "Create project",
+  "createProjectAction": "Create project",
+  "renameProjectTitle": "Edit project",
+  "renameProjectAction": "Save changes",
+  "deleteProjectAction": "Delete project",
+  "syncProjectsAction": "Sync projects",
+  "projectNameLabel": "Project name",
+  "projectNameHint": "my-project",
+  "projectPathLabel": "Mounted folder",
+  "emptyProjectsTitle": "No projects yet",
+  "emptyProjectsDescription": "Create a new folder inside the mounted root or sync to load the ones that already exist.",
+  "noFilteredProjectsTitle": "No matching projects",
+  "noFilteredProjectsDescription": "Adjust the search or change the filter to show projects again.",
+  "searchProjectsHint": "Search by name or path",
+  "filterAllProjectsLabel": "All",
+  "filterActiveProjectsLabel": "Active",
+  "filterAttentionProjectsLabel": "Needs review",
+  "projectLastUsedLabel": "Last used: {date}",
+  "@projectLastUsedLabel": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "projectNeverUsedLabel": "Created: {date}",
+  "@projectNeverUsedLabel": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "projectStatusActive": "Active",
+  "projectStatusIdle": "Idle",
+  "projectStatusAttention": "Needs review",
+  "deleteProjectTitle": "Delete {projectName}",
+  "@deleteProjectTitle": {
+    "placeholders": {
+      "projectName": {}
+    }
+  },
+  "deleteProjectMessage": "The project folder at {projectPath} will be removed and it will disappear from the app.",
+  "@deleteProjectMessage": {
+    "placeholders": {
+      "projectPath": {}
+    }
+  },
+  "cancelButton": "Cancel",
   "generalConversationTitle": "General conversation",
-  "generalConversationDescription": "Start a remote Copilot chat without attaching it to any mounted workspace.",
+  "generalConversationDescription": "Start a remote Copilot chat without attaching it to any project. This is useful for exploring ideas before jumping into a repository.",
+  "generalConversationFeatureTitle": "Best for shaping ideas",
+  "generalConversationFeatureDescription": "Use it to discuss strategy, design changes, or prepare prompts before entering a specific project.",
   "openGeneralConversationButton": "Open general conversation",
-  "workspaceSectionTitle": "Workspace",
-  "workspaceConversationDescription": "Attach the conversation to a mounted workspace so Copilot can operate inside that repository.",
-  "openWorkspaceConversationButton": "Open workspace conversation",
+  "workspaceSectionTitle": "Project",
+  "workspaceConversationDescription": "Attach the conversation to a mounted project so Copilot can operate inside that repository.",
+  "openWorkspaceConversationButton": "Open project conversation",
+  "openProjectConversationButton": "Open project chat",
+  "newConversationLabel": "New conversation",
+  "chatsLabel": "Chats",
+  "chatsPageTitle": "Chats",
+  "chatsSearchHint": "Search chats",
+  "chatsEmptyTitle": "No chat history yet",
+  "chatsEmptyDescription": "Your past conversations will appear here when the backend exposes chat history.",
+  "deleteChatHistoryAction": "Delete chat",
+  "deleteChatHistoryTitle": "Delete {chatTitle}",
+  "@deleteChatHistoryTitle": {
+    "placeholders": {
+      "chatTitle": {}
+    }
+  },
+  "deleteChatHistoryMessage": "This chat will disappear from the history and its persisted messages will be removed.",
+  "streamingTelemetryLabel": "Streaming telemetry",
+  "projectsRootHint": "The app manages projects as child folders inside the backend mounted root.",
   "retryButton": "Retry",
   "settingsTitle": "Settings",
   "themeModeLabel": "Theme mode",
@@ -34,6 +123,7 @@
   "themeModeDark": "Dark",
   "backendUrlLabel": "Backend URL",
   "saveButton": "Save",
+  "emptyConversationPrompt": "How can I help you?",
   "messageInputHint": "Write a message",
   "attachmentsComingSoon": "Attachments coming soon",
   "sendTooltip": "Send",

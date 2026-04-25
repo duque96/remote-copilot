@@ -10,11 +10,19 @@ class HttpRemoteCopilotRepository implements RemoteCopilotRepository {
 
   final ApiClient _apiClient;
 
+  static const _projectsKey = 'projects';
+
   @override
   String get baseUrl => _apiClient.baseUrl;
 
   @override
   set baseUrl(String value) => _apiClient.baseUrl = value;
+
+  @override
+  Future<WorkspaceDefinition> createWorkspace({required String name}) async {
+    final json = await _apiClient.postJson('/api/workspaces', {'name': name.trim()});
+    return WorkspaceDefinition.fromJson(json);
+  }
 
   @override
   Future<RemoteSessionBundle> createSession({String? workspaceId, String? title}) async {
@@ -27,6 +35,19 @@ class HttpRemoteCopilotRepository implements RemoteCopilotRepository {
   }
 
   @override
+  Future<RemoteSessionBundle> getSession(String sessionId) async {
+    final encodedSessionId = Uri.encodeComponent(sessionId);
+    final json = await _apiClient.getJson('/api/sessions/$encodedSessionId');
+    return RemoteSessionBundle.fromJson(json);
+  }
+
+  @override
+  Future<void> deleteSession(String sessionId) async {
+    final encodedSessionId = Uri.encodeComponent(sessionId);
+    await _apiClient.deleteJson('/api/sessions/$encodedSessionId');
+  }
+
+  @override
   Future<ConversationThread> getConversation(String conversationId) async {
     final json = await _apiClient.getJson('/api/conversations/$conversationId');
     return ConversationThread.fromJson(json);
@@ -36,6 +57,13 @@ class HttpRemoteCopilotRepository implements RemoteCopilotRepository {
   Future<HealthSnapshot> getHealth() async {
     final json = await _apiClient.getJson('/api/health');
     return HealthSnapshot.fromJson(json);
+  }
+
+  @override
+  Future<List<RemoteSession>> listSessions({String? workspaceId}) async {
+    final query = workspaceId != null && workspaceId.trim().isNotEmpty ? '?workspaceId=${Uri.encodeQueryComponent(workspaceId.trim())}' : '';
+    final json = await _apiClient.getJsonList('/api/sessions$query');
+    return json.map((item) => RemoteSession.fromJson(item as Map<String, dynamic>)).toList();
   }
 
   @override
@@ -60,6 +88,27 @@ class HttpRemoteCopilotRepository implements RemoteCopilotRepository {
   Future<List<WorkspaceDefinition>> getWorkspaces() async {
     final json = await _apiClient.getJsonList('/api/workspaces');
     return json.map((item) => WorkspaceDefinition.fromJson(item as Map<String, dynamic>)).toList();
+  }
+
+  @override
+  Future<List<WorkspaceDefinition>> syncWorkspaces() async {
+    final json = await _apiClient.postJson('/api/workspaces/sync', const {});
+    final projects = (json[_projectsKey] as List<dynamic>? ?? const []);
+    return projects.map((item) => WorkspaceDefinition.fromJson(item as Map<String, dynamic>)).toList();
+  }
+
+  @override
+  Future<WorkspaceDefinition> updateWorkspace({required String workspaceId, required String name}) async {
+    final encodedWorkspaceId = Uri.encodeComponent(workspaceId);
+    final json = await _apiClient.putJson('/api/workspaces/$encodedWorkspaceId', {'name': name.trim()});
+    return WorkspaceDefinition.fromJson(json);
+  }
+
+  @override
+  Future<WorkspaceDefinition> deleteWorkspace({required String workspaceId}) async {
+    final encodedWorkspaceId = Uri.encodeComponent(workspaceId);
+    final json = await _apiClient.deleteJson('/api/workspaces/$encodedWorkspaceId');
+    return WorkspaceDefinition.fromJson(json);
   }
 
   @override

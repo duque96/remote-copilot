@@ -56,6 +56,13 @@ public sealed class CopilotConversationOrchestrator(
                                 finalContent = messageEvent.Data?.Content ?? finalContent;
                                 break;
 
+                            case SessionTitleChangedEvent titleChangedEvent when !string.IsNullOrWhiteSpace(titleChangedEvent.Data?.Title):
+                                _ = remoteSessionRepository.UpdateTitleAsync(
+                                    session.Id,
+                                    titleChangedEvent.Data!.Title,
+                                    CancellationToken.None);
+                                break;
+
                             case SessionErrorEvent errorEvent:
                                 finalError = errorEvent.Data?.Message ?? "An unknown Copilot session error occurred.";
                                 break;
@@ -196,6 +203,7 @@ public sealed class CopilotConversationOrchestrator(
             ExitPlanModeCompletedEvent => assistantMessage.Id,
             SessionErrorEvent => assistantMessage.Id,
             SessionIdleEvent => assistantMessage.Id,
+            SessionTitleChangedEvent => assistantMessage.Id,
             SessionTaskCompleteEvent => assistantMessage.Id,
             _ => null,
         };

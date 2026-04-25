@@ -36,6 +36,11 @@ public sealed class CreateRemoteSessionCommandHandler(
         var session = await remoteSessionRepository.CreateAsync(workspace?.Id, title, cancellationToken);
         var conversation = await conversationRepository.CreateAsync(session.Id, title, cancellationToken);
 
+        if (workspace is not null)
+        {
+            await workspaceRepository.TouchAsync(workspace.Id, cancellationToken);
+        }
+
         return AppResult<CreateRemoteSessionCommandResult>.Success(
             new CreateRemoteSessionCommandResult(session, conversation));
     }

@@ -73,10 +73,17 @@ public sealed class CopilotPermissionService(IOptions<PermissionPolicyOptions> o
     {
         try
         {
-            var fullWorkspacePath = Path.GetFullPath(workspacePath);
+            var fullWorkspacePath = Path.TrimEndingDirectorySeparator(Path.GetFullPath(workspacePath));
             var fullCandidatePath = Path.GetFullPath(candidatePath);
 
-            return fullCandidatePath.StartsWith(fullWorkspacePath, StringComparison.Ordinal);
+            if (string.Equals(fullWorkspacePath, fullCandidatePath, StringComparison.Ordinal))
+            {
+                return true;
+            }
+
+            return fullCandidatePath.StartsWith(
+                fullWorkspacePath + Path.DirectorySeparatorChar,
+                StringComparison.Ordinal);
         }
         catch
         {

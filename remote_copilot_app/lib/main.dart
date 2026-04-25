@@ -10,7 +10,7 @@ import 'package:remote_copilot_app/infrastructure/repositories/http_remote_copil
 import 'package:remote_copilot_app/infrastructure/services/api_client.dart';
 import 'package:remote_copilot_app/infrastructure/services/settings_service.dart';
 import 'package:remote_copilot_app/infrastructure/services/sse_client.dart';
-import 'package:remote_copilot_app/ui/pages/app_startup/app_startup_page.dart';
+import 'package:remote_copilot_app/ui/pages/home_shell/home_page.dart';
 
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -78,7 +78,7 @@ class _RemoteCopilotAppState extends State<RemoteCopilotApp> {
       theme: AppTheme(TextTheme()).light(),
       darkTheme: AppTheme(TextTheme()).dark(),
       themeMode: _themeMode,
-      home: AppStartupPage(
+      home: HomePage(
         repository: widget.repository,
         settingsService: widget.settingsService,
         currentThemeMode: _themeMode,
