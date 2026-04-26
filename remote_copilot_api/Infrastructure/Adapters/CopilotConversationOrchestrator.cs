@@ -16,7 +16,8 @@ public sealed class CopilotConversationOrchestrator(
     IRemoteSessionRepository remoteSessionRepository,
     IConversationRepository conversationRepository,
     IConversationStreamPublisher streamPublisher,
-    IOptions<CopilotOptions> options,
+    IOptions<CopilotOptions> copilotOptions,
+    IOptions<WorkspaceRootOptions> workspaceRootOptions,
     ILogger<CopilotConversationOrchestrator> logger)
     : ICopilotConversationOrchestrator
 {
@@ -216,9 +217,9 @@ public sealed class CopilotConversationOrchestrator(
         CancellationToken cancellationToken)
     {
         var resolvedModel = string.IsNullOrWhiteSpace(model)
-            ? options.Value.Model
+            ? copilotOptions.Value.Model
             : model.Trim();
-        var workspacePath = workspace?.MountedPath;
+        var workspacePath = workspace?.MountedPath ?? workspaceRootOptions.Value.Path;
 
         if (!string.IsNullOrWhiteSpace(session.CopilotSessionId))
         {
@@ -247,13 +248,13 @@ public sealed class CopilotConversationOrchestrator(
         var createdSession = await client.CreateSessionAsync(
             new SessionConfig
             {
-                ClientName = options.Value.ClientName,
-                ConfigDir = options.Value.ConfigDirectory,
+                ClientName = copilotOptions.Value.ClientName,
+                ConfigDir = copilotOptions.Value.ConfigDirectory,
                 Model = resolvedModel,
                 WorkingDirectory = workspacePath,
                 Streaming = true,
-                SkillDirectories = options.Value.SkillDirectories,
-                DisabledSkills = options.Value.DisabledSkills,
+                SkillDirectories = copilotOptions.Value.SkillDirectories,
+                DisabledSkills = copilotOptions.Value.DisabledSkills,
                 OnPermissionRequest = (request, _) => permissionService.EvaluateAsync(workspacePath, request, cancellationToken),
             },
             cancellationToken);
